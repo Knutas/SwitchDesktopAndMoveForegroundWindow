@@ -17,7 +17,7 @@ public static class Desktop
         var CLSID_IVirtualDesktopManagerInternal = typeof(IVirtualDesktopManagerInternal).GUID;
 
         var shell = (IServiceProvider)Activator.CreateInstance(Type.GetTypeFromCLSID(CLSID_ImmersiveShell)!)!;
-        VirtualDesktopManagerInternal = (IVirtualDesktopManagerInternal)shell.QueryService(CLSID_VirtualDesktopManagerInternal, CLSID_IVirtualDesktopManagerInternal);
+        VirtualDesktopManagerInternal = shell.QueryService(ref CLSID_VirtualDesktopManagerInternal, ref CLSID_IVirtualDesktopManagerInternal);
     }
 
     /// <summary>
