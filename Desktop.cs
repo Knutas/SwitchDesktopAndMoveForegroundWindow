@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 
-﻿namespace SwitchDesktopAndMoveForegroundWindow;
+namespace SwitchDesktopAndMoveForegroundWindow;
 
 /// <summary>
 /// Provides access to Windows Virtual Desktop management functionality.
@@ -12,6 +12,8 @@ public static partial class Desktop
     private const int RightDirection = 4;
 
     private static readonly IVirtualDesktopManagerInternal VirtualDesktopManagerInternal;
+    private static readonly Guid CLSID_ImmersiveShell = new("C2F03A33-21F5-47FA-B4BB-156362A2F239");
+    private static readonly Guid CLSID_VirtualDesktopManagerInternal = new("C5E0CDCA-7B6E-41B2-9FC4-D93975CC467B");
 
     [LibraryImport("ole32.dll")]
     private static partial int CoCreateInstance(
@@ -24,9 +26,7 @@ public static partial class Desktop
     static Desktop()
     {
         const uint CLSCTX_LOCAL_SERVER = 0x4;
-        var CLSID_ImmersiveShell = new Guid("C2F03A33-21F5-47FA-B4BB-156362A2F239");
         var IID_IServiceProvider = typeof(IServiceProvider).GUID;
-        var CLSID_VirtualDesktopManagerInternal = new Guid("C5E0CDCA-7B6E-41B2-9FC4-D93975CC467B");
         var CLSID_IVirtualDesktopManagerInternal = typeof(IVirtualDesktopManagerInternal).GUID;
 
         Marshal.ThrowExceptionForHR(CoCreateInstance(ref CLSID_ImmersiveShell, 0, CLSCTX_LOCAL_SERVER, ref IID_IServiceProvider, out var serviceProviderPointer));

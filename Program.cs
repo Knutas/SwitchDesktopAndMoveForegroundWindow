@@ -1,6 +1,8 @@
 ﻿using SwitchDesktopAndMoveForegroundWindow;
 using TinyHotKey;
 
+PowerManagement.EnableEfficiencyMode();
+
 using var tinyHotKey = new TinyHotKeyInstance();
 
 var modifiers = Modifier.Control | Modifier.Alt | Modifier.Windows;
@@ -8,8 +10,7 @@ RegisterDesktopHotKey(modifiers, Key.Left, Desktop.Direction.Left);
 RegisterDesktopHotKey(modifiers, Key.Right, Desktop.Direction.Right);
 
 // Keep the application running until the process is killed
-var waitHandle = new ManualResetEvent(false);
-waitHandle.WaitOne();
+Thread.Sleep(Timeout.Infinite);
 
 void RegisterDesktopHotKey(Modifier modifiers, Key key, Desktop.Direction direction)
 {

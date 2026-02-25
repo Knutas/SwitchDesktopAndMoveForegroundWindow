@@ -11,6 +11,7 @@
     <PublishAot>true</PublishAot>
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <CopyOutputSymbolsToPublishDirectory>false</CopyOutputSymbolsToPublishDirectory>
+    <InvariantGlobalization>true</InvariantGlobalization>
   </PropertyGroup>
 
   <PropertyGroup>
