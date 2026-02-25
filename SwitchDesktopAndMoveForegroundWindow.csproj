@@ -12,11 +12,12 @@
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <CopyOutputSymbolsToPublishDirectory>false</CopyOutputSymbolsToPublishDirectory>
     <InvariantGlobalization>true</InvariantGlobalization>
+    <PublishDir>$(MSBuildProjectDirectory)\dist\</PublishDir>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <PublishDir>$(MSBuildProjectDirectory)\Publish\</PublishDir>
-  </PropertyGroup>
+  <ItemGroup>
+    <None Include=".github\workflows\release.yml" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="TinyHotKey" Version="2.1.0" />
